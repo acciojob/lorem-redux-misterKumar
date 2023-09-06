@@ -1,10 +1,11 @@
+
 import { SET_LOREM_IPSUM } from './actions';
 
 const initialState = {
-  loremIpsum: '',
+  loremIpsum: [],
 };
 
-const reducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_LOREM_IPSUM:
       return {
@@ -16,6 +17,7 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default rootReducer;
+
 
 
