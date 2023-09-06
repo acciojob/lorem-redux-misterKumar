@@ -1,9 +1,6 @@
-// LoremIpsum.js
-
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchLoremIpsum } from '../redux/actions';
-
 
 const LoremIpsum = ({ loremIpsum, fetchLoremIpsum }) => {
   useEffect(() => {
@@ -12,19 +9,27 @@ const LoremIpsum = ({ loremIpsum, fetchLoremIpsum }) => {
 
   return (
     <div className="LoremIpsum">
-      <h1 className="text-center">A Short Narration of Lorem Ipsum</h1>
+      <h1 className="text-center">A short Naration of Lorem Ipsum</h1>
       <div className="container">
         <div className="row">
-          {loremIpsum.map((post) => (
-            <div className="col-md-6" key={post.id}>
-              <div className="card mb-4">
-                <div className="card-body">
-                  <p className="card-title"><strong>Title: </strong> {post.title}</p>
-                  <p className="card-text"><strong>Body: </strong>  {post.body}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+          {loremIpsum.length === 0 ? (
+            <h4>Loading...</h4>
+          ) : (
+            <>
+            <ul>
+                {loremIpsum.map((post) => (
+                    <li className="col-md-6" key={post.id}>
+                    <div className="card mb-4">
+                        <div className="card-body">
+                        <h4 className="card-title"><strong>Title: </strong> {post.title}</h4>
+                        <p className="card-text"><strong>Body: </strong>  {post.body}</p>
+                        </div>
+                    </div>
+                    </li>
+                ))}
+            </ul>   
+            </>
+          )}
         </div>
       </div>
     </div>
