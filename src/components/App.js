@@ -1,17 +1,50 @@
 import React from "react";
-import { Provider } from "react-redux";
-import store from '../redux/store'
-import LoremIpsumDisplay from "./LoremComponent";
+import './../styles/App.css';
+// import Menu from "./menu.js";
+// import SmallBox from "./innerDisplay.js";
 
-const App = () => {
-  return (
-    <Provider store={store}>
+class APP extends React.Component {
+  componentWillUpdate() {
+    try {
+      if (this.props.Begin === true) this.Time();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  render() {
+    const {
+      Begin,
+      cards,
+      Timer,
+      WhenClick,
+      WhenReset,
+      Collect,
+      Update
+    } = this.props;
+    console.log(Update, Begin, Timer);
+    return (
       <div>
-        <h1>A short Naration of Lorem Ipsum</h1>
-        <LoremIpsumDisplay />
-      </div>
-    </Provider>
-  );
-};
+        <div>
+          <Menu timer={Timer} WhenReset={WhenReset} />
+        </div>
 
-export default App;
+        <div className="main_game">
+          {cards.map((value, index) => (
+            <SmallBox
+              key={index}
+              src={value.src}
+              index={index}
+              id={value.name}
+              displayer={value.Display}
+              WhenClick={WhenClick}
+              Collect={Collect}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
+
+export default APP;
