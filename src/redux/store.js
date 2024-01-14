@@ -1,6 +1,10 @@
-import { apiReducer } from "./reducer/apiReducer";
-import {createStore} from 'redux'
-import thunk from "redux-thunk";
-import {applyMiddleware} from 'redux'
+import { createStore, combineReducers } from "redux";
+import loremIpsumReducer from "./reducer";
 
-export let store= createStore(apiReducer,applyMiddleware(thunk)) 
+const rootReducer = combineReducers({
+  loremIpsum: loremIpsumReducer,
+});
+
+const store = createStore(rootReducer);
+
+export default store;
